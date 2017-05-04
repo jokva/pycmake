@@ -385,13 +385,13 @@ function(add_setup_py target template)
 
             get_filename_component(dstpath include/${item} DIRECTORY)
             string(REGEX REPLACE "([a-zA-Z]):" "\\1" dstpath "${dstpath}")
-            string(REGEX REPLACE "//*" "/" dstpath "${dstpath}")
 
             pycmake_is_system_path(syspath ${item})
             if (NOT ${syspath})
                 file(COPY ${item} DESTINATION ${dstpath})
             endif ()
 
+            string(REGEX REPLACE "([a-zA-Z]):" "\\1" item "${item}")
             list(APPEND _inc "'include/${item}'")
         endforeach ()
 
